@@ -50,7 +50,8 @@
 </template>
 
 <script lang="ts">
-    import { Vue } from 'vue-class-component';
+    import { Vue } from 'vue-class-component'
+    import { Prop } from 'vue-property-decorator'
 
     import { Especialidade } from '@/model/especialidade'
     import { Notification } from '@/model/notification'
@@ -68,12 +69,21 @@
         private especialidade : Especialidade = new Especialidade()
         private notification : Notification = new Notification()
     
+        @Prop({ type: Number, required: false })
+        private readonly id!: number
+
+        @Prop({ type: String, default: false })
+        private readonly model!: string
+
         public mounted(): void {
             this.especialidadeClient = new EspecialidadeClient()
+
+            console.log(this.id)
+            console.log(this.model)
         }
         
         private onClickCadastrar(): void {
-
+            
             this.especialidadeClient.cadastrar(this.especialidade)
                 .then(
                 success => {

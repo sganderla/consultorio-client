@@ -13,8 +13,14 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import(/* webpackChunkName: "list" */ '../views/especialidade/especialidade-list.vue')
   },
   {
-    path: '/especialidade/cadastrar',
+    path: '/especialidade/formulario',
     name: 'especialidade-cadastrar',
+    component: () => import(/* webpackChunkName: "form" */ '../views/especialidade/especialidade-form.vue')
+  },
+  {
+    path: '/especialidade/formulario/:model/:id',
+    name: 'especialidade-detalhar',
+    props: (router) => ({ id: router.params.id, model: router.params.model }),
     component: () => import(/* webpackChunkName: "form" */ '../views/especialidade/especialidade-form.vue')
   }
 ]

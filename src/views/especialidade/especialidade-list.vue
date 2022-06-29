@@ -13,7 +13,7 @@
       <input class="input" type="filtro" placeholder="Nome da Especialidade">            
     </div>
     <div class="column is-3">
-      <a :href="'/especialidade/cadastrar'" class="button is-info is-fullwidth">Cadastrar</a>
+      <a :href="'/especialidade/formulario'" class="button is-info is-fullwidth">Cadastrar</a>
     </div>
   </div>
 
@@ -38,7 +38,7 @@
         </th>
         
         <th>{{ item.nome }}</th>
-        <th> <button class="button is-small is-warning"> Detalhar </button> </th>
+        <th> <button @click="onClickPaginaDetalhar(item.id)" class="button is-small is-warning"> Detalhar </button> </th>
       </tr>
     </tbody>
   </table>
@@ -77,6 +77,10 @@
           },
           error => console.log(error)
         )
+    }
+
+    private onClickPaginaDetalhar(idEspecialidade: number){
+      this.$router.push({ name: 'especialidade-detalhar', params: { id: idEspecialidade, model: 'detalhar' } })
     }
   }
 </script>
